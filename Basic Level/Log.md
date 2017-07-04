@@ -79,6 +79,30 @@
 
 - B1023   输入数字时就转换为字符串形式
 
-- ​
+- B1024   
+
+- B1025   
+
+- B1026   四舍五入：time = (int)(x+0.5)>(int)x ? (int)(x+1):(int)x;
+
+- B1027   找规律的题先进行纸头计算
+
+- B1028   测试点3：输入数据均不合理
+
+    ```
+    //结构体构造函数
+    struct Per{
+    	char name[10];
+    	int year;
+    	int month;
+    	int day;
+    	Per(){}
+    	Per(int _year,int _month, int _day):year(_year),month(_month),day(_day){}
+    }per[101000];
+    ```
+
+    ​
+
+    ​
 
 
