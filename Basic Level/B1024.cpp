@@ -1,82 +1,96 @@
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
-char sdown, sup;
-char ldown;
-char down[1010],up[1010];
+char str[10010];
+char sig[3];
+char integ;
+char ind[5];
+char dec[10010];
 int main()
 {
-	char num[1010];
-	gets(num);
-	int pos=0;
-	sdown = num[pos++];
-	ldown = num[pos++];
-	int d=0, u=0;
-	for(pos=3; pos<strlen(num); pos++)
-	{
-		if(num[pos]=='E')
-			break;
-		down[d++] = num[pos];
+	gets(str);
+	sig[0] = str[0];
+	integ = str[1];
+	int pos = 0;
+	for(int i=3; i<strlen(str); i++)
+	{	
+		if(str[i]=='E')
+			pos = i;
 	}
-	pos++;
-	sup = num[pos++];
-	for(;pos<strlen(num);pos++)
-	{
-		up[u++] = num[pos];
-	}
-	//printf("%c %c %c %s %s",sdown, sup, ldown, down, up);
-	if(sdown=='-')
+	for(int i=3, j=0; i<pos; i++)
+		dec[j++] = str[i];
+	sig[1] = str[pos+1];
+	for(int i=pos+2,j=0; i<strlen(str); i++)
+		ind[j++] = str[i];
+	//printf("%s %c %s %s",sig, integ, dec, ind);
+	
+	if(sig[0]=='-')
 		printf("-");
-	if(sup=='-')
+	if(sig[1]=='-')
 	{
+		int move = atoi(ind)-1;
 		printf("0.");
-		int move = atoi(up);
-		for(int i=1; i<move; i++)
+		for(int i=0; i<move; i++)
 			printf("0");
-		printf("%c",ldown);
-		printf("%s",down);
+		printf("%c%s",integ, dec);
 	}
-	else if(sup=='+')
+	else if(sig[1]=='+')
 	{
-		int move = atoi(up);
-		int dif = move-strlen(down);
-		int k=0;
-		if(dif >= 0)
+		int move = atoi(ind);
+		if(integ=='0')
 		{
-			if(ldown!='0')
+			if(move>=strlen(dec))
 			{
-				printf("%c%s",ldown,down);
+				int d = atoi(dec);
+				printf("%d",d);
+				for(int i=0; i<move-strlen(dec); i++)
+					printf("0");
 			}
 			else
 			{
-				printf("%d",atoi(down));
-			}	
-			for(int i=0; i<dif; i++)
-				printf("0");
+				int k,zero;
+				for(zero=0; zero<move; zero++)
+				{
+					if(dec[zero]!='0')
+						break;
+				}
+				if(zero>=move)
+				{
+					printf("0.");
+				}
+				else
+				{
+					for(k=zero; k<move; k++)
+						printf("%c",dec[k]);
+					printf(".");
+				}
+				
+				for(k=move; k<strlen(dec); k++)
+				{
+					
+					printf("%c",dec[k]);
+				}
+			}
 		}
 		else
 		{
-			if(ldown!='0')
+			if(move>=strlen(dec))
 			{
-				printf("%c",ldown);
-				for(k=0; k<-dif; k++)
-					printf("%c",down[k]);
-				printf(".");
-				for(;k<strlen(down);k++)
-					printf("%c",down[k]);
+				printf("%c%s",integ,dec);
+				for(int i=0; i<move-strlen(dec); i++)
+					printf("0");
 			}
 			else
 			{
-				k=0;
-				if(down[k]=='0' && k<)
-					k++;
-				for(k=0; k<-dif; k++)
-					printf("%c",down[k]);
+				int k;
+				printf("%c",integ);
+				for(k=0; k<move; k++)
+					printf("%c",dec[k]);
 				printf(".");
-				for(;k<strlen(down);k++)
-					printf("%c",down[k]);
-				
-			}	
+				for(k=move; k<strlen(dec); k++)
+					printf("%c",dec[k]);
+			}
 		}
+		
 	}
 }

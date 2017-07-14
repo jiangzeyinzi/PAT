@@ -1,26 +1,38 @@
 #include <cstdio>
 #include <algorithm>
 using namespace std;
-
-int num[100010];
+const int maxn = 100010;
+int a[maxn];
+int N, p;
+int binarySearch(int i)
+{
+	int mid;
+	int left = i+1, right = N;
+	long long x = (long long)a[i]*p;
+	while(left<right)
+	{
+		mid = (left+right)/2;
+		if(x>=a[mid])
+			left = mid + 1;
+		else
+			right = mid;
+	}
+	return left;
+}
 int main()
 {
-	int N, p;
 	scanf("%d%d",&N, &p);
 	for(int i=0; i<N; i++)
 	{
-		scanf("%d",&num[i]);
+		scanf("%d",&a[i]);
 	}
-	sort(num, num+N);
-	double div=0.0;
-	int max = num[N-1];
-	int min = num[0];
-	int k=0;
-	for(int i=N-1; i>=0; i--)
+	sort(a, a+N);
+	int ans = 1;
+	for(int i=0; i<N; i++)
 	{
-		for(int j=0; j<N; j++)
-		{
-			
-		}
+		int j = binarySearch(i);
+		ans = max(ans, j-i);
 	}
+	printf("%d",ans);
+	return 0;
 }

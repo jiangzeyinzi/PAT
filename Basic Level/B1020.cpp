@@ -2,8 +2,8 @@
 #include <algorithm>
 using namespace std;
 struct moon{
-	int ku;
-	int pri;
+	double ku;
+	double pri;
 	double unit;
 }mc[1010];
 
@@ -16,16 +16,14 @@ int main()
 	int n,m;
 	scanf("%d%d",&n,&m);
 	for(int i=0; i<n; i++)
-		scanf("%d",&mc[i].ku);
+		scanf("%lf",&mc[i].ku);
 	for(int i=0; i<n; i++)
-		scanf("%d",&mc[i].pri);
+		scanf("%lf",&mc[i].pri);
 	for(int i=0; i<n; i++)
 		mc[i].unit = mc[i].pri*1.0/mc[i].ku;
 	sort(mc, mc+n, cmp);
 	//for(int i=0; i<n; i++)
 	//	printf("%.2f ",mc[i].unit);
-	if(n==1 && m==1 && mc[0].ku==2 && mc[0].pri ==0)
-		while(1);
 	int now=0;
 	int k=0;
 	double money=0.0;
