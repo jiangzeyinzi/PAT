@@ -4,5 +4,5 @@ int main()
 {
 	int a=3, b=2;
 	double c = (double)a/b;
-	printf("%f",c);
+	printf("%d",3%0);
 }
