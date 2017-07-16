@@ -1,8 +1,9 @@
 #include <cstdio>
 #include <algorithm>
+#include <cstring>
 using namespace std;
 struct Stu{
-	char name[10];
+	char name[12];
 	int height;
 }stu[10010];
 int cnt=0;
@@ -15,17 +16,22 @@ bool cmp(Stu a, Stu b)
 }
 void order(Stu a[], int n, int m)
 {
-	int n1 = (m%2==0) ? m-1 : m-2;
-	int n2 = (m%2==0) ? m-2 : m-1;
-	for(int i=n1; i>0; i-=2)
-	{
-		printf("%s ",stu[i+n].name);
-	}
-	for(int i=0; i<=n2; i+=2)
+	char tmp[10010][12];
+	int i=m/2+1,j=m/2+1;
+	int k=n;
+	strcpy(tmp[i],a[k++].name);
+	while(k-n<=m)
 	{
 		if(i>0)
+			strcpy(tmp[--i],a[k++].name);
+		if(j<=m)
+			strcpy(tmp[++j],a[k++].name);
+	}
+	for(int i=1; i<=m; i++)
+	{
+		if(i>1)
 			printf(" ");
-		printf("%s",stu[i+n].name);
+		printf("%s",tmp[i]);
 	}
 	printf("\n");
 	cnt += m;

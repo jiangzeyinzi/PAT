@@ -1,8 +1,11 @@
 #include <cstdio>
 #include <cstring>
-char str[100010];
+const int maxn = 100010;
+char str[maxn];
 long long cnt=0;
-int a[100010];
+int a[maxn];
+int left[maxn];
+int right[maxn];
 int main()
 {
 	gets(str);
@@ -13,22 +16,25 @@ int main()
 		if(str[i]=='A' && i>0 && i<len)
 			a[numa++] = i;
 	}
-	
+	for(int i=0; i<len; i++)
+	{
+		if(i>0)
+			left[i] = left[i-1];
+		if(str[i]=='P')
+			left[i]++;	
+	}
+	for(int i=len-1; i>=0; i--)
+	{
+		if(i<len-1)
+			right[i] = right[i+1];
+		if(str[i]=='T')
+			right[i]++;
+	}
 	for(int i=0; i<numa; i++)
 	{
-		int p = 0, t = 0;
-		for(int j=0; j<a[i]; j++)
-		{
-			if(str[j]=='P')
-				p++;
-		}
-		for(int k=a[i]; k<len; k++)
-		{
-			if(str[k]=='T')
-				t++;
-		}
-		
-		cnt += p * t;
-	} 
+		int j = a[i];
+		cnt += left[j]*right[j];  
+	}
+	
 	printf("%d",cnt%1000000007);
 }

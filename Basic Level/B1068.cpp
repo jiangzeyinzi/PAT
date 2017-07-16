@@ -1,44 +1,53 @@
 #include <cstdio>
-#include <cmath>
+#include <algorithm>
+#include <cstring>
+#include <map>
+using namespace std;
+int dir[8][2] = {-1,-1,-1,0,-1,1,0,-1,0,1,1,-1,1,0,1,1};
+map <int, int> mp;
 int num[1010][1010];
+int M, N, TOL;
+bool judge(int x, int y)
+{
+	for(int i=0; i<8; i++)
+	{
+		int xx = x + dir[i][0];
+		int yy = y + dir[i][1];
+		if(xx>=0 && xx<N && yy>=0 && yy<M && abs(num[xx][yy]-num[x][y]<=TOL))
+			return false;
+	}
+	return true;
+}
 int main()
 {
-	int M, N, TOL;
 	scanf("%d%d%d",&M,&N,&TOL);
-	for(int i=1; i<=N; i++)
+	for(int i=0; i<N; i++)
 	{
-		for(int j=1; j<=M; j++)
+		for(int j=0; j<M; j++)
 		{
 			scanf("%d",&num[i][j]);
+			mp[num[i][j]]++;
 		}
 	}
-	int cnt=0;
-	int x, y, val;
-	for(int i=1; i<=N; i++)
+	int cnt = 0;
+	int x, y;
+	for(int i=0; i<N; i++)
 	{
-		for(int j=1; j<=M; j++)
+		for(int j=0; j<M; j++)
 		{
-			int d1 = abs(num[i][j]-num[i][j-1]);
-			int d2 = abs(num[i][j]-num[i][j+1]);
-			int d3 = abs(num[i][j]-num[i+1][j]);
-			int d4 = abs(num[i][j]-num[i+1][j+1]);
-			int d5 = abs(num[i][j]-num[i+1][j-1]);
-			int d6 = abs(num[i][j]-num[i-1][j]);
-			int d7 = abs(num[i][j]-num[i-1][j+1]);
-			int d8 = abs(num[i][j]-num[i-1][j-1]);
-			if(d1>TOL && d2>TOL && d3>TOL && d4>TOL && d5>TOL && d6>TOL && d7>TOL && d8>TOL)
+			if(mp[num[i][j]]==1 && judge(i,j))
 			{
+				cnt++;
 				x = i;
 				y = j;
-				val = num[i][j];
-				cnt++; 
+				printf("test");
 			}
 		}
 	}
 	if(cnt==0)
 		printf("Not Exist\n");
 	else if(cnt==1)
-		printf("(%d, %d): %d\n",y,x,val);
+		printf("(%d, %d): %d\n",y,x,num[x-1][y-1]);
 	else 
 		printf("Not Unique\n");
 }
