@@ -1,7 +1,7 @@
 #include <cstdio>
 #include <cstring>
 int down[256];
-char s1[100];
+char s1[100010];
 char s2[100010];
 int main()
 {
@@ -14,11 +14,11 @@ int main()
 		if(tmp>='A' && tmp<='Z')
 			down[tmp+32]=1;	
 	}
-	for(int i=0; i<strlen(s2); i++)
+	for(int i=0; s2[i]!=0; i++)
 	{
 		char ch = s2[i];
 		int tmp = ch;
-		if(down[tmp]!=1)
+		if(down[tmp]==0)
 		{
 			if((down['+']==1) && (ch>='A'&&ch<='Z'))
 				continue;
