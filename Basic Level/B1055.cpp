@@ -2,31 +2,32 @@
 #include <algorithm>
 #include <cstring>
 using namespace std;
+const int maxn = 10010;
 struct Stu{
-	char name[12];
+	char name[10];
 	int height;
-}stu[10010];
-int cnt=1;
+}stu[maxn];
 bool cmp(Stu a, Stu b)
 {
 	if(a.height!=b.height)
 		return a.height>b.height;
 	else
-		return strcmp(a.name,b.name)<0;
+		return strcmp(a.name, b.name)<0;
 }
-void order(Stu a[], int left, int right)
+void order(Stu a[], int left, int m)
 {
-	char tmp[10010][12];
-	int m = right-left+1;
-	int i = m/2+1, j = m/2+1;
-	int k=0;
-	strcpy(tmp[i],a[left++].name);
-	while(left<=right)
+	char tmp[maxn][10];
+	int mid = m/2+1;
+	int i=mid, j=mid;
+	int k = 0;
+	strcpy(tmp[mid],a[left++].name);
+	while(k<m)
 	{
-		if(i>=1)
+		if(i>1)
 			strcpy(tmp[--i],a[left++].name);
-		if(j<=m)
+		if(j<m)
 			strcpy(tmp[++j],a[left++].name);
+		k++;
 	}
 	for(int i=1; i<=m; i++)
 	{
@@ -36,24 +37,22 @@ void order(Stu a[], int left, int right)
 	}
 	printf("\n");
 }
-
 int main()
 {
-	int N, K;
+	int N,K;
 	scanf("%d%d",&N,&K);
 	for(int i=1; i<=N; i++)
-	{
-		scanf("%s%d",stu[i].name, &stu[i].height);
-	}
-	sort(stu+1, stu+N+1, cmp);
-	//for(int i=0; i<N; i++)
-	//	printf("%s %d\n",stu[i].name, stu[i].height);
-	int mdown = N/K;
-	int mup = N - mdown * (K-1);
-	//printf("%d %d\n",m,mtop);
-	order(stu, 1, mup);
+		scanf("%s%d",stu[i].name,&stu[i].height);
+	sort(stu+1, stu+N+1, cmp);	
+	//for(int i=1; i<=N; i++)
+	//	printf("%s-%d\n",stu[i].name,stu[i].height);
+	int col = N/K;
+	int tcol = N - col*(K-1);
+	//printf("%d %d",col, tcol);
+	order(stu, 1, tcol);
 	for(int i=0; i<K-1; i++)
 	{
-		order(stu, mup+i*K+1 , mup+i*K+mdown);
+		order(stu, tcol+col*i+1, col);
 	}
-} 
+	return 0;
+}
