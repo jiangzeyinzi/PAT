@@ -1,22 +1,30 @@
 struct node{
 	typename data;
-	node* lchild;
-	node* rchild;
-};
-node* newNode()
+	vector child;
+}Node[maxn];
+int index=0;
+int newNode(int v)
 {
-	node* Node = new node;
-	Node->data = v;
-	Node->lchild = Node->rchild = NULL;
-	return Node;
+	Node[index].data = v;
+	Node[index].child.clear();
+	return index++;
 }
-void search(node* root , int x, int newdata)
+void PreOrder(int root)
 {
-	if(root==NULL)
-		return;
-	if(root->data==x)
-		root->data = newdata;
-	search(root->lchild, x, newdata);
-	search(root->rchild, x, newdata);
+	printf("%d ",Node[root].data);
+	for(int i=0; i<Node[root].child.size(); i++)
+		PreOder(Node[root].child[i]);
 }
-
+void LayerOrder(int root)
+{
+	queue<int> Q;
+	Q.push(root);
+	while(!Q.empty())
+	{
+		int now = Q.front();
+		printf("%d ",Node[now].data); 
+		Q.pop();
+		for(int i=0; i<Node[now].child.size(); i++)
+			Q.push(Node[now].child[i]); 
+	}
+}
