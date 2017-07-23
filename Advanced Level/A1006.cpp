@@ -12,13 +12,10 @@ bool isEarly(Stu a, Stu b)
 	sscanf(b.in, "%d:%d:%d", &h2, &m2, &s2);
 	//printf("%d %d %d %d %d %d",h1, m1, s1, h2, m2, s2);
 	//printf("\n");
-	if(h1<h2)
+	if(h1<h2 || (h1==h2 && m1<m2) || (h1==h2 && m1==m2 && s1<s2))
 		return false;
-	else if(m1<m2)
-		return false;
-	else if(s1<s2)
-		return false;
-	return true;
+	else 
+		return true;
 }
 bool isLate(Stu a, Stu b)
 {
@@ -27,13 +24,10 @@ bool isLate(Stu a, Stu b)
 	sscanf(b.out, "%d:%d:%d", &h2, &m2, &s2);
 	//printf("%d %d %d %d %d %d",h1, m1, s1, h2, m2, s2);
 	//printf("\n");
-	if(h1>h2)
+	if(h1>h2 || (h1==h2 && m1>m2) || (h1==h2 && m1==m2 && s1>s2))
 		return false;
-	else if(m1>m2)
-		return false;
-	else if(s1>s2)
-		return false;
-	return true;
+	else 
+		return true;
 }
 int main()
 {
