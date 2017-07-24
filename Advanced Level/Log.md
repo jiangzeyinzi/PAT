@@ -68,7 +68,36 @@
   memset(vis, false, sizeof(vis));   //初始化vis[maxn]
   ```
 
-- A1015   题意理解：N是素数，并且在D进制下的逆序的10进制数也是素数。
+- A1015   题意理解：N是素数，并且在D进制下的逆序的10进制数也是素数。  注意输出Yes和No的时候，NO和No看清楚！！！大坑
+
+  ```
+  for(int i=len-1; i>=0; i++)
+  	n = n*radix + d[i];   //从高位D进制转化为10进制
+  ```
+
+- A1016   一条黄线分为线内等候人和线外等候人，当客户进入线内等候时，他的服务结束his见就可以确定了；在线内等候人均满的时候，看当前服务窗口哪个服务时间最短，最短的出队列，然后线外等候的进改队列。   时间hh:mm转换为mm表示比较方便比较   只要在17：00前轮到服务，那么就会持续到服务结束，不管关门时间   驱动不靠时间，而是靠顾客，一个个顾客输入，从而进队出队。   刚开门进队时，要选择min(线内等候人数，总顾客数)进队，接着再剩余的入队   time是关键字，编译错误。
+
+  ```
+  struct Win{
+  	int endTime, popTime;   //设置该窗口最后服务的时间endTime和队首服务结束的时间popTime
+  	queue<int> q;   //该窗口线内排队的队列
+  }win[20];
+  ```
+
+  - A1019   //进制转换
+
+  ```
+  int index =0;
+  do
+  {
+    z[index++] = n % b;
+    n /= b;
+  }while(n!=0);
+  ```
+
+- A1020   中序加后序，层序输出。中序加后序create()一棵二叉树（递归记得边界），层序输出也就是BFS，记得利用cnt使得末尾不带空格。
+
+- A1021   N (<=10000)说明需要使用指针的形式，如果用静态就会内存超限。
 
 ### TIP:
 
@@ -82,4 +111,4 @@
 
 ### WORDS:
 
-digits-数字   by commas-用逗号   integers-整数 positive integers正整数   separated by a space-用空格分隔   Polynomials-多项式   Each case occupies 2 lines-每个用例占两行   nonzero terms-非零项   respectively-分别地，各自   exponents-指数   coefficients-系数    accurate to 1 decimal place-精确到一位小数   scattered-分散的   guaranteed-保证   hierarchy-分层、等级制度   pedigree tree-谱系树   non-leaf node-非叶子节点    For the sake of simplicity-简单起见   consecutive words-连续的词   Input Specification-输入规格   Product-乘积   equation-等式   radix-基数   trophy-纪念品，战利品   Lottery-彩票   tie-平局   games' odds-游戏的赔率   Calculus-微积分   Linear Algebra-线性代数   vitally -极其，生死攸关地   Reversible-可逆的   with radix D-转为D进制
+digits-数字   by commas-用逗号   integers-整数 positive integers正整数   separated by a space-用空格分隔   Polynomials-多项式   Each case occupies 2 lines-每个用例占两行   nonzero terms-非零项   respectively-分别地，各自   exponents-指数   coefficients-系数    accurate to 1 decimal place-精确到一位小数   scattered-分散的   guaranteed-保证   hierarchy-分层、等级制度   pedigree tree-谱系树   non-leaf node-非叶子节点    For the sake of simplicity-简单起见   consecutive words-连续的词   Input Specification-输入规格   Product-乘积   equation-等式   radix-基数   trophy-纪念品，战利品   Lottery-彩票   tie-平局   games' odds-游戏的赔率   Calculus-微积分   Linear Algebra-线性代数   vitally -极其，生死攸关地   Reversible-可逆的   with radix D-转为D进制   chronologically-按时间的前后顺序排列地   Palindromic Number-回文数   acyclic-无环   components-分量
