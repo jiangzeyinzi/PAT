@@ -97,7 +97,65 @@
 
 - A1020   中序加后序，层序输出。中序加后序create()一棵二叉树（递归记得边界），层序输出也就是BFS，记得利用cnt使得末尾不带空格。
 
-- A1021   N (<=10000)说明需要使用指针的形式，如果用静态就会内存超限。
+- A1021   该题就是判断有几个连通块(使用DFSTrave返回个数)，有一个的话就输出遍历时能获得最深的起始节点号。N (<=10000)说明需要使用指针的形式，如果用静态就会内存超限。
+
+  使用邻接表以后，要注意节点的范围是[0~n-1]还是[1~n]，遍历节点时选择好，另外要注意push_back()的话首先push到下标为0的位置，得从0开始遍历，要注意区分开来，不然容易越界出错。
+
+  如果想输出深度那么直接在DFS(u, depth)中printf()就好，想获取最大的深度，那么定义一个全局变量，每次递归时，判断当前深度与该全局变量的大小，取最大的赋值给全局变量。
+
+  如果要多次遍历，则记得将vis初始化`memset(vis, false, sizeof(vis));`
+
+  也可使用并查集来做，有时间再看。
+
+- A1022   给定每一本书的编号、书名、作者、关键字(多个)、出版社、出版年份，如果使用结构体的话会有很多很多项，然后如果要对每一项都能进行查询得到多个书的编号的话，代码会十分冗长、低效。所以现使用map来查询。可以分别为每一个建立set<string, set<int>>的映射，分别对应书名、作者、关键字、出版社、出版年份与编号的map映射。即给定一个作者，可以输出集合中所有的对应编号，最后再根据查询的方式，传入相应的mp进行查询。    前一行为整数，后一行获取一整行字符串，记得用getchar()   字符串以及map的参数传递速度较慢，尽可能加上引用，该题不加引用运行超时。
+
+  ```
+  gets()   //C语言库函数，获取一整行
+  scanf("%d: ",&no);   //获取 1: The Testing Book  格式
+  getline(cin, tmp);   //C++，title可为string类型，获取一整行
+  printf("%d: %s\n",no,tmp.c_str());   //将string用printf输出  str.c_str()
+  while(cin>>key)    //test code debug sort keyword获取空格隔开的关键字
+  {
+    mKey[key].insert(id);   //cin根据空格断开
+    char c = getchar();   //接收一个关键字后的空格
+    if(c=='\n') break;   //换行就退出
+  }
+  if(mp.find(str)==mp.end())   printf("Not Found\n");   //find找不到时的写法
+  ```
+
+- A1023   大整数运算(struct bign)   实现一个数*2的方法，然后只要统计每个数位的个数是否相同就可以了。(1、可以分别统计再比较 2、可以在一个循环中n1进行++，n2进行--，最后再来一个循环如果cnt==0，则每个数字的个数相同)
+
+- A1024   大整数运算。   运算过程中数会越来越大，不能按照一开始写得来确定数的范围。
+
+  ```
+  struct bign{
+  	int d[1000];
+  	int len;
+  	bign(){
+  		memset(d, 0, sizeof(d));
+  		len = 0;
+  	}
+  }    //结构体，其实就是每一位存到Int数组中
+  bign change(char str[])   //字符串转换成Bign
+  void show(bign a)   //输出
+  bign add(bign a, bign b){
+  	bign c;
+  	int carry = 0;
+  	for(int i=0; i<a.len || b.len; i++){
+  		int tmp = a.d[i]+b.d[i] +carry;
+  		c.d[c.len++] = tmp%10;
+  		carry = tmp/10;
+  	} 
+  	if(carry!=0){     //mutil要用while，并再操作carry
+  		c.d[c.len++] = carry;
+  	}
+  	return c;
+  }
+  ```
+
+- A1025   结构体排序：分局部排名和全局排名，可以在输入的时候就可以把局部的进行排序`sort(stu+cnt, stu+cnt+k, cmp);`，并记录局部排名。输入完毕后再进行全局排名。   在i和j的二层循环时，一定要注意i和j 的使用问题，别使用错了。
+
+- A1026   需求问题，求等待的时间。一般把人放在队列里入队出队，然后需求的物品或人可以建一个结构体，代表当前的状态（何时结束状态）。
 
 ### TIP:
 
@@ -111,4 +169,4 @@
 
 ### WORDS:
 
-digits-数字   by commas-用逗号   integers-整数 positive integers正整数   separated by a space-用空格分隔   Polynomials-多项式   Each case occupies 2 lines-每个用例占两行   nonzero terms-非零项   respectively-分别地，各自   exponents-指数   coefficients-系数    accurate to 1 decimal place-精确到一位小数   scattered-分散的   guaranteed-保证   hierarchy-分层、等级制度   pedigree tree-谱系树   non-leaf node-非叶子节点    For the sake of simplicity-简单起见   consecutive words-连续的词   Input Specification-输入规格   Product-乘积   equation-等式   radix-基数   trophy-纪念品，战利品   Lottery-彩票   tie-平局   games' odds-游戏的赔率   Calculus-微积分   Linear Algebra-线性代数   vitally -极其，生死攸关地   Reversible-可逆的   with radix D-转为D进制   chronologically-按时间的前后顺序排列地   Palindromic Number-回文数   acyclic-无环   components-分量
+digits-数字   by commas-用逗号   integers-整数 positive integers正整数   separated by a space-用空格分隔   Polynomials-多项式   Each case occupies 2 lines-每个用例占两行   nonzero terms-非零项   respectively-分别地，各自   exponents-指数   coefficients-系数    accurate to 1 decimal place-精确到一位小数   scattered-分散的   guaranteed-保证   hierarchy-分层、等级制度   pedigree tree-谱系树   non-leaf node-非叶子节点    For the sake of simplicity-简单起见   consecutive words-连续的词   Input Specification-输入规格   Product-乘积   equation-等式   radix-基数   trophy-纪念品，战利品   Lottery-彩票   tie-平局   games' odds-游戏的赔率   Calculus-微积分   Linear Algebra-线性代数   vitally -极其，生死攸关地   Reversible-可逆的   with radix D-转为D进制   chronologically-按时间的前后顺序排列地   Palindromic Number-回文数   acyclic-无环   components-分量   duplication-复制，重复   permutation-排列   simultaneously-同时，一齐
