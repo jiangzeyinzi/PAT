@@ -167,6 +167,10 @@
 
 - A1030   图论的题目一般编写通过一个用例后若出现其他错误一般就是题目的阅读有问题，注意看清题目的输出要求。  本题涉及到最短路径上的最小花费问题(c[MAXV])和最短路径输出(pre[MAXV])。Dijkstra或Dijkstra+DFS
 
+- A1031   先计算出n1\n2\n3，再一行一行输出
+
+- A1032   参考：构造链表的结构体时，加上一个flag，true代表第一个链表中出现过的节点。之后再遍历第二个链表，遇到flag==true时就跳出，此时的p就是所求的。（遇到与第一条链表相同的节点就可跳出了，不必继续下去，因为链表性质后面的节点肯定都一样）     即根据题目要求给node添加属性，并更新标记。
+
 ### TIP:
 
 - 树
@@ -179,4 +183,4 @@
 
 ### WORDS:
 
-digits-数字   by commas-用逗号   integers-整数 positive integers正整数   separated by a space-用空格分隔   Polynomials-多项式   Each case occupies 2 lines-每个用例占两行   nonzero terms-非零项   respectively-分别地，各自   exponents-指数   coefficients-系数    accurate to 1 decimal place-精确到一位小数   scattered-分散的   guaranteed-保证   hierarchy-分层、等级制度   pedigree tree-谱系树   non-leaf node-非叶子节点    For the sake of simplicity-简单起见   consecutive words-连续的词   Input Specification-输入规格   Product-乘积   equation-等式   radix-基数   trophy-纪念品，战利品   Lottery-彩票   tie-平局   games' odds-游戏的赔率   Calculus-微积分   Linear Algebra-线性代数   vitally -极其，生死攸关地   Reversible-可逆的   with radix D-转为D进制   chronologically-按时间的前后顺序排列地   Palindromic Number-回文数   acyclic-无环   components-分量   duplication-复制，重复   permutation-排列   simultaneously-同时，一齐
+digits-数字   by commas-用逗号   integers-整数 positive integers正整数   separated by a space-用空格分隔   Polynomials-多项式   Each case occupies 2 lines-每个用例占两行   nonzero terms-非零项   respectively-分别地，各自   exponents-指数   coefficients-系数    accurate to 1 decimal place-精确到一位小数   scattered-分散的   guaranteed-保证   hierarchy-分层、等级制度   pedigree tree-谱系树   non-leaf node-非叶子节点    For the sake of simplicity-简单起见   consecutive words-连续的词   Input Specification-输入规格   Product-乘积   equation-等式   radix-基数   trophy-纪念品，战利品   Lottery-彩票   tie-平局   games' odds-游戏的赔率   Calculus-微积分   Linear Algebra-线性代数   vitally -极其，生死攸关地   Reversible-可逆的   with radix D-转为D进制   chronologically-按时间的前后顺序排列地   Palindromic Number-回文数   acyclic-无环   components-分量   duplication-复制，重复   permutation-排列   simultaneously-同时，一齐   suffix-后缀   tank-油箱   capital -大写字母
