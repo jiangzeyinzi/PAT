@@ -171,6 +171,42 @@
 
 - A1032   参考：构造链表的结构体时，加上一个flag，true代表第一个链表中出现过的节点。之后再遍历第二个链表，遇到flag==true时就跳出，此时的p就是所求的。（遇到与第一条链表相同的节点就可跳出了，不必继续下去，因为链表性质后面的节点肯定都一样）     即根据题目要求给node添加属性，并更新标记。
 
+- **A1033**   若无距离0的加油站，则肯定无法到达。题目中的条件大部分都可能是double型，因为没有说是整数。    贪心：首先将终点的数据进行统一方便操作。
+
+  1、优先前往所达范围内油价更低的加油站
+
+  2、没有油价更低的加油站时，加满油后前往油价尽可能低的加油站
+
+  3、所达范围内没有加油站时结束
+
+- **A1034**   理解题意：总的边权大于阈值为GANG，一个GANG中点权最大为HEAD
+
+  最多有1000条记录，所以最多有2000人。   本题为了累计边权，设“0”为点与点之间相互之间无联系，非INF
+
+  若计算点权有关的数据则在vis[u]=true后进行，计算边权有关的则在for循环里进行。对边权进行求和时，为了防止有环图少加一条边权，则应先累加边权，再进行递归访问，同时为了防止边权被重复累加，应在递归前把改边删除(赋值)
+
+  ```
+  map<string, int> sToi;   //字符串转化为数字，以便于存入图
+  map<int, string> iTos;   //数字转化为字符串
+  int change(string str){
+  	if(sToi.find(str) != sToi.end())   //注意写法：如果已经出现过，则直接返回编号
+  		return sToi[str];
+  	else{                              //没有出现过就增加一个编号
+  		sToi[str] = nper;
+  		iTos[nper] = str;
+  		return nper++;
+  	}
+  }
+  ```
+
+  ​
+
+- A1035   注意字符1，l，0，O，首先构建结构体，再构建结构体类型的vector
+
+- A1036   如果构造结构体没有指明大小，一般就是可以直接通过输入就完成处理（一般是找出最大/最小值），只需要临时的变量或输出变量，而不需要构造结构体数组。
+
+- ​
+
 ### TIP:
 
 - 树
@@ -183,4 +219,4 @@
 
 ### WORDS:
 
-digits-数字   by commas-用逗号   integers-整数 positive integers正整数   separated by a space-用空格分隔   Polynomials-多项式   Each case occupies 2 lines-每个用例占两行   nonzero terms-非零项   respectively-分别地，各自   exponents-指数   coefficients-系数    accurate to 1 decimal place-精确到一位小数   scattered-分散的   guaranteed-保证   hierarchy-分层、等级制度   pedigree tree-谱系树   non-leaf node-非叶子节点    For the sake of simplicity-简单起见   consecutive words-连续的词   Input Specification-输入规格   Product-乘积   equation-等式   radix-基数   trophy-纪念品，战利品   Lottery-彩票   tie-平局   games' odds-游戏的赔率   Calculus-微积分   Linear Algebra-线性代数   vitally -极其，生死攸关地   Reversible-可逆的   with radix D-转为D进制   chronologically-按时间的前后顺序排列地   Palindromic Number-回文数   acyclic-无环   components-分量   duplication-复制，重复   permutation-排列   simultaneously-同时，一齐   suffix-后缀   tank-油箱   capital -大写字母
+digits-数字   by commas-用逗号   integers-整数 positive integers正整数   separated by a space-用空格分隔   Polynomials-多项式   Each case occupies 2 lines-每个用例占两行   nonzero terms-非零项   respectively-分别地，各自   exponents-指数   coefficients-系数    accurate to 1 decimal place-精确到一位小数   scattered-分散的   guaranteed-保证   hierarchy-分层、等级制度   pedigree tree-谱系树   non-leaf node-非叶子节点    For the sake of simplicity-简单起见   consecutive words-连续的词   Input Specification-输入规格   Product-乘积   equation-等式   radix-基数   trophy-纪念品，战利品   Lottery-彩票   tie-平局   games' odds-游戏的赔率   Calculus-微积分   Linear Algebra-线性代数   vitally -极其，生死攸关地   Reversible-可逆的   with radix D-转为D进制   chronologically-按时间的前后顺序排列地   Palindromic Number-回文数   acyclic-无环   components-分量   duplication-复制，重复   permutation-排列   simultaneously-同时，一齐   suffix-后缀   tank-油箱   capital -大写字母   coupon-优惠券

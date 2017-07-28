@@ -25,7 +25,7 @@ bool judge(char str[])
 {
 	for(int i=0; str[i]; i++)
 	{
-		if(str[i]=='l' || str[i]=='0' || str[i]=='l' || str[i]=='O')
+		if(str[i]=='1' || str[i]=='0' || str[i]=='l' || str[i]=='O')
 			return false;
 	}
 	return true;
