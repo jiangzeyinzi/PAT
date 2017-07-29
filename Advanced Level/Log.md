@@ -205,7 +205,35 @@
 
 - A1036   如果构造结构体没有指明大小，一般就是可以直接通过输入就完成处理（一般是找出最大/最小值），只需要临时的变量或输出变量，而不需要构造结构体数组。
 
-- ​
+- A1037   使用while循环时要注意不仅写上你要判断的条件，同时别忘了边界。   排序，负负相乘，正正相乘
+
+- A1038   使拼接起来的数字最小，直接sort排序，可以先拼接好再去零，如为空则输出0，不空输出结果
+
+  ```
+  bool cmp (string a, string b){    //排序的方式
+  	return a+b < b+a;
+  }
+  ```
+
+- A1039   1、使用map/string处理学生姓名会导致超时，`map<string, set<int> > mp;`的写法不行，也不能使用cin/cout输入输出，所以得使用自建的字符串hash函数（题目中已经指明三个字符一个数字，最大范围是26x26x26x10+1）   2、同时如果使用二维数组存储每个学生的课程会导致内存超限，所以得使用vector/set减少空间的消耗。
+
+  hash函数名在PAT编译不通过，给vector进行sort排序`sort(stu.begin(), stu.end());`
+
+- A1040
+
+- A1041   散列
+
+- A1042   注意所有要不都从1开始，要不都从0开始，做数字到字符的映射时，如从1开始，则0的位置记得腾出空字符。   纸牌的数字和符号的映射可以直接写死，也可以计算得到
+
+  ```
+  mp[5]={‘S’,'H','C','D','J'};
+  mp[(x-1)/13]   //花色
+  mp[(x-1)%13+1]   //花色下的编号
+  ```
+
+- A1043   在树中最好使用vector的进行存储遍历的顺序，方便进行比较（比较两个vector是否相等直接==就可以了！！！）   对镜像树的先序/后序遍历，只需要在先序/后序遍历的时候交换左右子树的访问顺序即可。
+
+- **A1044** 
 
 ### TIP:
 
@@ -219,4 +247,4 @@
 
 ### WORDS:
 
-digits-数字   by commas-用逗号   integers-整数 positive integers正整数   separated by a space-用空格分隔   Polynomials-多项式   Each case occupies 2 lines-每个用例占两行   nonzero terms-非零项   respectively-分别地，各自   exponents-指数   coefficients-系数    accurate to 1 decimal place-精确到一位小数   scattered-分散的   guaranteed-保证   hierarchy-分层、等级制度   pedigree tree-谱系树   non-leaf node-非叶子节点    For the sake of simplicity-简单起见   consecutive words-连续的词   Input Specification-输入规格   Product-乘积   equation-等式   radix-基数   trophy-纪念品，战利品   Lottery-彩票   tie-平局   games' odds-游戏的赔率   Calculus-微积分   Linear Algebra-线性代数   vitally -极其，生死攸关地   Reversible-可逆的   with radix D-转为D进制   chronologically-按时间的前后顺序排列地   Palindromic Number-回文数   acyclic-无环   components-分量   duplication-复制，重复   permutation-排列   simultaneously-同时，一齐   suffix-后缀   tank-油箱   capital -大写字母   coupon-优惠券
+digits-数字   by commas-用逗号   integers-整数 positive integers正整数   separated by a space-用空格分隔   Polynomials-多项式   Each case occupies 2 lines-每个用例占两行   nonzero terms-非零项   respectively-分别地，各自   exponents-指数   coefficients-系数    accurate to 1 decimal place-精确到一位小数   scattered-分散的   guaranteed-保证   hierarchy-分层、等级制度   pedigree tree-谱系树   non-leaf node-非叶子节点    For the sake of simplicity-简单起见   consecutive words-连续的词   Input Specification-输入规格   Product-乘积   equation-等式   radix-基数   trophy-纪念品，战利品   Lottery-彩票   tie-平局   games' odds-游戏的赔率   Calculus-微积分   Linear Algebra-线性代数   vitally -极其，生死攸关地   Reversible-可逆的   with radix D-转为D进制   chronologically-按时间的前后顺序排列地   Palindromic Number-回文数   acyclic-无环   components-分量   duplication-复制，重复   permutation-排列   simultaneously-同时，一齐   suffix-后缀   tank-油箱   capital -大写字母   coupon-优惠券   symmetric-相称性   Shuffle-洗牌   inside jobs-内幕   gamblers-赌徒   inadequate-不充分   casinos-赌场   （Spade-黑桃 Heart-红桃 Club-梅花 Diamond-方块）   recursively-递归地
