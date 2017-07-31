@@ -1,30 +1,46 @@
 struct node{
-	typename data;
-	vector child;
-}Node[maxn];
-int index=0;
-int newNode(int v)
+	int data;
+	node* lchild;
+	node* rchild;
+};
+node* newNode(int x)
 {
-	Node[index].data = v;
-	Node[index].child.clear();
-	return index++;
+	node* root = new node;
+	root->data = x;
+	root->lchild = NULL;
+	root->rchild = NULL;
+	return root;
 }
-void PreOrder(int root)
+
+void research(node* root, int x, int newdata)
 {
-	printf("%d ",Node[root].data);
-	for(int i=0; i<Node[root].child.size(); i++)
-		PreOder(Node[root].child[i]);
-}
-void LayerOrder(int root)
-{
-	queue<int> Q;
-	Q.push(root);
-	while(!Q.empty())
+	if(root==NULL)
+		return;
+	if(root->data==x)
 	{
-		int now = Q.front();
-		printf("%d ",Node[now].data); 
-		Q.pop();
-		for(int i=0; i<Node[now].child.size(); i++)
-			Q.push(Node[now].child[i]); 
+		root->data = newdata;
 	}
+	search(root->lchild, x, newdata);
+	search(root->rchild, x, newdata);
+}
+void insert(node* root, int x)
+{
+	if(root==NULL)
+	{
+		root = newNode(x);
+		return;
+	}
+	if(root->data>=x)
+		insert(root->lchild, x);
+	else
+		insert(root->rchild, x);
+}
+node* create(int arr)
+{
+	node* root = NULL;
+	for(int i=0; i<n; i++)
+	{
+		insert(root, arr[i]);
+	}
+	return root;
 }
